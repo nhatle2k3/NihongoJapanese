@@ -7,7 +7,10 @@ const bcrypt = require('bcryptjs');
 const connectionString = process.env.DATABASE_URL || 'postgresql://postgres:nhatle090103@localhost:5432/japanese_dictionary';
 
 const pool = new Pool({
-  connectionString,
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 async function initDb() {
